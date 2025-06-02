@@ -4,8 +4,8 @@ from sklearn.naive_bayes import MultinomialNB
 
 app = Flask(__name__)
 
-texts = ["I love this!", "This is great", "I hate this", "This is bad", "I’m happy", "I’m sad"]
-labels = ["positive", "positive", "negative", "negative", "positive", "negative"]
+texts = ["I love this", "I hate it", "This is great", "This is awful"]
+labels = ["positive", "negative", "positive", "negative"]
 
 vectorizer = CountVectorizer()
 X = vectorizer.fit_transform(texts)
@@ -13,7 +13,7 @@ model = MultinomialNB()
 model.fit(X, labels)
 
 @app.route('/')
-def index():
+def home():
     return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
@@ -23,5 +23,5 @@ def predict():
     prediction = model.predict(x_input)[0]
     return render_template('index.html', prediction=prediction, text=user_input)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3000)
+if __name__ == "__main__":
+    app.run()
