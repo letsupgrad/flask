@@ -4,15 +4,15 @@
     <title>AI Sentiment Analyzer</title>
 </head>
 <body>
-    <h2>Enter a sentence to analyze its sentiment:</h2>
-    <form action="/predict" method="post">
+    <h2>Enter a sentence:</h2>
+    <form method="POST" action="/predict">
         <input type="text" name="text" required>
         <button type="submit">Analyze</button>
     </form>
 
     {% if prediction %}
-        <h3>Sentiment: {{ prediction }}</h3>
-        <p>Input: "{{ text }}"</p>
+        <p><strong>Sentiment:</strong> {{ prediction }}</p>
+        <p><strong>Input:</strong> {{ text }}</p>
     {% endif %}
 </body>
 </html>
